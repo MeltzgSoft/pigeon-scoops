@@ -1,8 +1,11 @@
-{:lein   true
- :builds {:app {:target     :browser
-                :output-dir "resources/public/cljs-out"
-                :asset-path "/public/cljs-out"
-                :modules    {:main {:entries [pigeon-scoops.core]
-                                    :init-fn pigeon-scoops.core/init}}
+{:lein     true
+ :dev-http {3000 "resources/public"}
+ :builds   {:app {:target     :browser
+                  :output-dir "resources/public/cljs-out"
+                  :asset-path "/public/cljs-out"
+                  :modules    {:main {:entries [pigeon-scoops.core]
+                                      :init-fn pigeon-scoops.core/init}}
+                  :devtools   {:preloads [preload devtools.preload]}
+                  :dev {:compiler-options {:closure-defines {goog.DEBUG true}}}
 
-                :devtools   {:preloads [preload devtools.preload]}}}}
+                  :release {:compiler-options {:closure-defines {goog.DEBUG false}}}}}}
